@@ -102,7 +102,7 @@ export class CadastroQuestaoComponent implements OnInit {  // Adicionando AfterV
 
     const data: Questao = {
       id: this.edicaoQuestao ? this.edicaoQuestao.id : 0,
-      numero: this.edicaoQuestao ? this.edicaoQuestao.numero : 0,
+      numero: formData.numero ?? 0,
       topico: formData.topico ?? null,
       materia: formData.materia ?? null,
       ano: formData.ano ?? null,
@@ -114,7 +114,6 @@ export class CadastroQuestaoComponent implements OnInit {  // Adicionando AfterV
       alternativaD: formData.alternativaD ?? null,
       alternativaE: formData.alternativaE ?? null,
     };
-
     if (this.edicaoQuestao) {
       this.questaoService.atualizar(this.edicaoQuestao.id, data).subscribe({
         next: () => {
