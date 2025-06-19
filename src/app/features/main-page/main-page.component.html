@@ -1,0 +1,11 @@
+<div class="main-page">
+  <h1 class="title">Portal do Estudo</h1>
+
+  <div class="main-row">
+    <div class="main-btn" style="background-color: #c19875;" routerLink="/materias">Matérias</div>
+    <div *ngIf="role!=='alunos'" class="main-btn" style="background-color: #dbcda9;" routerLink="/alunos">Alunos</div>
+  </div>
+  <div class="main-row">
+    <div *ngIf="role==='admin'" class="main-btn" style="background-color: #8ac89d;" routerLink="/usuarios">Usuários</div>
+  </div>
+</div>

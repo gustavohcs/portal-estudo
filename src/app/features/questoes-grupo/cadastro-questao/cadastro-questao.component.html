@@ -1,0 +1,97 @@
+<form [formGroup]="form" (ngSubmit)="cadastrar()" class="form-container">
+  <div class="form-group">
+    <label for="numero">Número:</label>
+    <input id="numero" type="number" formControlName="numero" class="form-control" />
+    <div class="error-message" *ngIf="f.numero.invalid && f.numero.touched">
+      Informe um número válido (número maior que zero).
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="topico">Tópico:</label>
+    <input id="topico" type="text" formControlName="topico" class="form-control" />
+    <div class="error-message" *ngIf="f.topico.invalid && f.topico.touched">
+      O tópico é obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Matéria:</label>
+    <input id="materia" type="text" formControlName="materia" class="form-control" />
+    <div class="error-message" *ngIf="f.materia.invalid && f.materia.touched">
+      A matéria é obrigatória.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ano">Ano:</label>
+    <input id="ano" type="number" formControlName="ano" class="form-control" />
+    <div class="error-message" *ngIf="f.ano.invalid && f.ano.touched">
+      Informe um ano válido (número maior que zero).
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="conteudo">Pergunta:</label>
+    <app-quill-editor #quillEditorRef formControlName="pergunta"></app-quill-editor>
+    <div class="error-message" *ngIf="f.pergunta.invalid && f.pergunta.touched">
+      A pergunta é obrigatória e deve ter pelo menos 10 caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Alternativa A:</label>
+    <input id="alternativaA" type="text" formControlName="alternativaA" class="form-control" />
+    <div class="error-message" *ngIf="f.alternativaA.invalid && f.alternativaA.touched">
+      Campo obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Alternativa B:</label>
+    <input id="alternativaB" type="text" formControlName="alternativaB" class="form-control" />
+    <div class="error-message" *ngIf="f.alternativaB.invalid && f.alternativaB.touched">
+      Campo obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Alternativa C:</label>
+    <input id="alternativaC" type="text" formControlName="alternativaC" class="form-control" />
+    <div class="error-message" *ngIf="f.alternativaC.invalid && f.alternativaC.touched">
+      Campo obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Alternativa D:</label>
+    <input id="alternativaD" type="text" formControlName="alternativaD" class="form-control" />
+    <div class="error-message" *ngIf="f.alternativaD.invalid && f.alternativaD.touched">
+      Campo obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Alternativa E:</label>
+    <input id="alternativaE" type="text" formControlName="alternativaE" class="form-control" />
+    <div class="error-message" *ngIf="f.alternativaE.invalid && f.alternativaE.touched">
+      Campo obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Resposta:</label>
+    <input id="alternativaE" type="text" formControlName="resposta" class="form-control" />
+    <div class="error-message" *ngIf="f.resposta.invalid && f.resposta.touched">
+      Campo obrigatório.
+    </div>
+  </div>
+
+  <button type="submit" class="btn-submit"  *ngIf="!edicaoQuestao" [disabled]="form.invalid">Cadastrar</button>
+  <button type="submit" class="btn-submit"  *ngIf="edicaoQuestao" [disabled]="form.invalid">Editar</button>
+
+</form>
+
+   <div class="back-to-main" routerLink="/questoes">
+        <img src="left-arrow.png" alt="Voltar para o início" />
+    </div>

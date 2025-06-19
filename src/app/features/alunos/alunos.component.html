@@ -1,0 +1,37 @@
+<div class="alunos">
+ <h2 class="title">Alunos</h2>
+
+  <!-- Filtro e seleção -->
+  <div class="form-controls">
+    <input type="text" [(ngModel)]="filtro" placeholder="Pesquisar por nome..." />
+    <select [(ngModel)]="anoSelecionado">
+      <option value="">Todos os anos</option>
+      <option *ngFor="let ano of anosLetivos" [value]="ano">{{ ano }}</option>
+    </select>
+    <button (click)="buscar()">Buscar</button>
+  </div>
+
+  <!-- Tabela com rolagem -->
+  <div class="tabela-scroll" *ngIf="alunosFiltrados.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Ano Letivo</th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #ded9cd;">
+        <tr *ngFor="let aluno of alunosFiltrados">
+          <td>{{ aluno.nome }}</td>
+          <td>{{ aluno.anoLetivo }}º ano</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="alunosFiltrados.length === 0">Nenhum aluno encontrado.</p>
+</div>
+ 
+   <div class="back-to-main" routerLink="/">
+        <img src="left-arrow.png" alt="Voltar para o início" />
+    </div>

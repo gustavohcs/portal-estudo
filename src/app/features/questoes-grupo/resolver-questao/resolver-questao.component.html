@@ -1,0 +1,78 @@
+<div class="alunos" *ngIf="questao">
+  <div class="pergunta" [innerHTML]="questao.pergunta"></div>
+
+  <div class="alternativas">
+    <label *ngFor="let letra of letras" class="alternativa">
+      <input
+        type="radio"
+        name="resposta"
+        [value]="letra"
+        [(ngModel)]="respostaSelecionada"
+        [disabled]="respostaVerificada"
+      />
+      <span>{{ letra }}: {{ getAlternativa(letra) }}</span>
+    </label>
+  </div>
+
+  <div class="acoes">
+    <button (click)="verificarResposta()" [disabled]="!respostaSelecionada || respostaVerificada">
+      Confirmar Resposta
+    </button>
+    <div class="resultado" *ngIf="respostaVerificada">
+      <span *ngIf="respostaCorreta" class="correta">✔️ Resposta correta!</span>
+      <span *ngIf="!respostaCorreta" class="incorreta">
+        ❌ Resposta incorreta. A correta é: {{ questao.resposta }}
+      </span>
+    </div>
+  </div>
+
+  <div class="back-to-main" [routerLink]="['/questoes']">
+    <img src="left-arrow.png" alt="Voltar para o início" />
+  </div>
+</div>
+
+<div class="comentarios">
+  <h3>Comentários</h3>
+
+  <ng-template #comentarioTemplate let-comentario>
+    <div class="comentario" [style.marginLeft.px]="comentario.respostaParaIdComentario ? 20 : 0">
+      <div class="comentario-topo">
+        <span class="comentario-usuario">{{ comentario.nomeUsuario }}</span>
+        <span class="comentario-data">{{ comentario.creationDate | date:'dd/MM/yyyy HH:mm':'-0300' }}</span>
+      </div>
+      <div class="comentario-mensagem">
+        {{ comentario.mensagem }}
+      </div>
+      <div>
+        <button *ngIf="respondendoA?.id !== comentario.id" style="margin-top: 10px; margin-bottom: 10px;" (click)="responder(comentario)">Responder</button>
+      </div>
+      
+
+      <!-- Campo de resposta -->
+      <div *ngIf="respondendoA?.id === comentario.id" class="novo-comentario">
+        <textarea [(ngModel)]="novaMensagemResposta" rows="2"  style="width: 95%;" placeholder="Escreva uma resposta..."></textarea>
+        <button (click)="enviarResposta(comentario.id)" [disabled]="!novaMensagemResposta.trim()">Enviar</button>
+      </div>
+
+      <!-- Respostas -->
+      <div *ngFor="let resposta of comentario.respostas">
+        <ng-container *ngTemplateOutlet="comentarioTemplate; context: { $implicit: resposta }"></ng-container>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Comentários principais -->
+  <div *ngFor="let comentario of comentariosOrganizados">
+    <ng-container *ngTemplateOutlet="comentarioTemplate; context: { $implicit: comentario }"></ng-container>
+  </div>
+
+  <!-- Novo comentário raiz -->
+  <div class="novo-comentario">
+    <textarea
+      [(ngModel)]="novaMensagem"
+      placeholder="Escreva um comentário..."
+      rows="3"
+    ></textarea>
+    <button (click)="enviarComentario()" [disabled]="!novaMensagem.trim()">Enviar</button>
+  </div>
+</div>

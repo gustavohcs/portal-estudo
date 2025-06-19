@@ -1,0 +1,45 @@
+<div class="alunos">
+ <h2 class="title">Questões {{materiaNome}} {{ano}}º Ano</h2>
+
+  <!-- Filtro e seleção -->
+  <div class="form-controls">
+    <select [(ngModel)]="topicoSelecionado">
+      <option value="">Todos os tópicos</option>
+      <option *ngFor="let topico of topicos" [value]="topico">{{ topico }}</option>
+    </select>
+    <button (click)="buscar()">Buscar</button>
+    <button *ngIf="role !== 'aluno'" style="margin-left: 10px; background-color: #0066cc; color: white;" (click)="criarQuestao()">Cadastrar</button>
+  </div>
+
+  <!-- Tabela com rolagem -->   
+  <div class="tabela-scroll" *ngIf="questoesFiltradas.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Questão</th>
+          <th>Tópico</th>
+          <th>Ano Letivo</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #ded9cd;">
+        <tr *ngFor="let questao of questoesFiltradas">
+          <td>{{ questao.id }}</td>
+          <td>{{ questao.topico }}</td>
+          <td>6º Ano</td>
+          <td>
+            <button (click)="abrirQuestao(questao)">Abrir</button>
+            <button *ngIf="role !== 'aluno'" style="margin-left: 5px; background-color: rgb(2, 116, 2);" (click)="editarQuestao(questao)">Editar</button>
+            <button *ngIf="role !== 'aluno'" style="margin-left: 5px; background-color: rgb(116, 2, 2);" (click)="deletarQuestao(questao)">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="questoesFiltradas.length === 0">Nenhuma questão encontrada.</p>
+</div>
+ 
+   <div class="back-to-main" [routerLink]="['/menu-ensino', ano]">
+        <img src="left-arrow.png" alt="Voltar para o início" />
+    </div>

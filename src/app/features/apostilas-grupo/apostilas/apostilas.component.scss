@@ -1,0 +1,84 @@
+.alunos {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #dbcda9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px black solid;
+}
+
+.form-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.alunos input,
+.alunos select,
+.alunos button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.alunos input,
+.alunos select {
+  width: 400px;
+}
+
+.alunos button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.alunos button:hover {
+  background-color: #0056b3;
+}
+
+.tabela-scroll {
+  overflow-y: auto;
+  max-height: 600px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  scrollbar-width: thin;
+  margin-top: 20px;
+  border: 2px black;
+}
+
+.alunos table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.alunos th,
+.alunos td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.alunos th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.alunos p {
+  margin-top: 20px;
+  color: #666;
+  font-style: italic;
+}

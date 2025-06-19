@@ -1,0 +1,50 @@
+<form [formGroup]="form" (ngSubmit)="cadastrar()" class="form-container">
+  <div class="form-group">
+    <label for="capitulo">Capítulo:</label>
+    <input id="capitulo" type="number" formControlName="capitulo" class="form-control" />
+    <div class="error-message" *ngIf="f.capitulo.invalid && f.capitulo.touched">
+      Informe um capítulo válido (número maior que zero).
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="topico">Tópico:</label>
+    <input id="topico" type="text" formControlName="topico" class="form-control" />
+    <div class="error-message" *ngIf="f.topico.invalid && f.topico.touched">
+      O tópico é obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="materia">Matéria:</label>
+    <input id="materia" type="text" formControlName="materia" class="form-control" />
+    <div class="error-message" *ngIf="f.materia.invalid && f.materia.touched">
+      A matéria é obrigatória.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ano">Ano:</label>
+    <input id="ano" type="number" formControlName="ano" class="form-control" />
+    <div class="error-message" *ngIf="f.ano.invalid && f.ano.touched">
+      Informe um ano válido (número maior que zero).
+    </div>
+  </div>
+
+  <!-- Usando o QuillEditor Standalone para o campo de Conteúdo -->
+  <div class="form-group">
+    <label for="conteudo">Conteúdo:</label>
+    <app-quill-editor #quillEditorRef formControlName="conteudo"></app-quill-editor>
+    <div class="error-message" *ngIf="f.conteudo.invalid && f.conteudo.touched">
+      O conteúdo é obrigatório e deve ter pelo menos 10 caracteres.
+    </div>
+  </div>
+
+  <button type="submit" class="btn-submit"  *ngIf="!edicaoApostila" [disabled]="form.invalid">Cadastrar</button>
+  <button type="submit" class="btn-submit"  *ngIf="edicaoApostila" [disabled]="form.invalid">Editar</button>
+
+</form>
+
+   <div class="back-to-main" routerLink="/apostilas">
+        <img src="left-arrow.png" alt="Voltar para o início" />
+    </div>

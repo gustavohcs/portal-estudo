@@ -1,0 +1,39 @@
+<div class="alunos">
+ <h2 class="title">Usuários</h2>
+
+  <!-- Filtro e seleção -->
+  <div class="form-controls">
+    <input type="text" [(ngModel)]="filtro" placeholder="Pesquisar por nome..." />
+    <button (click)="cadastrarUsuario()">Cadastrar</button>
+  </div>
+
+  <!-- Tabela com rolagem -->
+  <div class="tabela-scroll" *ngIf="usuarios">
+    <table>
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Acesso</th>
+          <th>Nome</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #ded9cd;">
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.usuarioLogin }}</td>
+          <td>{{ usuario.role }}</td>
+          <td>{{ usuario.nome }}</td>
+          <td>
+            <button style="margin-left: 5px; background-color: rgb(2, 116, 2);" (click)="editarUsuario(usuario)">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="!usuarios">Nenhum aluno encontrado.</p>
+</div>
+ 
+   <div class="back-to-main" routerLink="/">
+        <img src="left-arrow.png" alt="Voltar para o início" />
+    </div>

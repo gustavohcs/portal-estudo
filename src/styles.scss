@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background-color: #8CC7FE   ; /* opcional */
+}
+
+.back-to-main {
+  position: fixed;   /* fixa na tela */
+  top: 50%;            /* colado no topo */
+  left: 60px;           /* colado na esquerda */
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1100;     /* maior que o do header para ficar acima */
+
+  img {
+    width: 100px;     /* tamanho fixo (ajusta se quiser) */
+    height: auto;
+    transition: transform 0.2s ease;
+    opacity: 0.8;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 40px;
+}
+
+img {
+  max-width: 100%;
+}

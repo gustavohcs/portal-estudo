@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="cadastrar()" class="form-container">
+  <div class="form-group">
+    <label for="usuarioLogin">Usuário:</label>
+    <input id="usuarioLogin" type="text" formControlName="usuarioLogin" class="form-control" />
+    <div class="error-message" *ngIf="f.usuarioLogin.invalid && f.usuarioLogin.touched">
+      Informe um usuario válido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="senha">Senha:</label>
+    <input id="senha" type="text" formControlName="senha" class="form-control" />
+    <div class="error-message" *ngIf="f.senha.invalid && f.senha.touched">
+      Informe uma senha válida.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="role">Tipo Acesso:</label>
+    <input id="role" type="text" formControlName="role" class="form-control" />
+    <div class="error-message" *ngIf="f.role.invalid && f.role.touched">
+      Informe um tipo acesso válido.
+    </div>
+  </div>
+
+   <div class="form-group">
+    <label for="role">Nome:</label>
+    <input id="nome" type="text" formControlName="nome" class="form-control" />
+    <div class="error-message" *ngIf="f.role.invalid && f.role.touched">
+      Informe um nome válido.
+    </div>
+  </div>
+
+  <div *ngIf="form.get('role')?.value === 'aluno'" class="form-group">
+    <label for="role">Ano Letivo:</label>
+    <input id="anoLetivo" type="number" formControlName="anoLetivo" class="form-control" />
+    <div class="error-message" *ngIf="f.role.invalid && f.role.touched">
+      Informe um ano válido.
+    </div>
+  </div>
+
+  <button type="submit" class="btn-submit"  *ngIf="!edicaoUsuario" [disabled]="form.invalid">Cadastrar</button>
+  <button type="submit" class="btn-submit"  *ngIf="edicaoUsuario" [disabled]="form.invalid">Editar</button>
+
+</form>
+
+   <div class="back-to-main" routerLink="/">
+        <img src="left-arrow.png" alt="Voltar para o início" />
+    </div>

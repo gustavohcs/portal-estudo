@@ -1,0 +1,9 @@
+<header *ngIf="(role) && (role!=='aluno')" class="main-header">
+    <div class="user-info">Usuário: {{ usuarioLogin }}  |  Acesso: {{ role }} | RU: 4641284</div>
+    <div class="logout-btn" (click)="auth.logout()">Sair</div>
+</header>
+
+<header *ngIf="role==='aluno'" class="main-header">
+    <div class="user-info">Usuário: {{ usuarioLogin }}  |  Aluno: {{anoLetivo}}º Ano | RU: 4641284</div>
+    <div class="logout-btn" (click)="auth.logout()">Sair</div>
+</header>

@@ -1,0 +1,45 @@
+<div class="alunos">
+ <h2 class="title">Apostila - {{materiaNome}} {{ano}}º Ano</h2>
+
+  <!-- Filtro e seleção -->
+  <div class="form-controls">
+    <select [(ngModel)]="topicoSelecionado">
+      <option value="">Todos os tópicos</option>
+      <option *ngFor="let topico of topicos" [value]="topico">{{ topico }}</option>
+    </select>
+    <button (click)="buscar()">Buscar</button>
+    <button *ngIf="role !== 'aluno'" style="margin-left: 10px; background-color: #0066cc; color: white;" (click)="criarApostila()">Cadastrar</button>
+  </div>
+
+  <!-- Tabela com rolagem -->   
+  <div class="tabela-scroll" *ngIf="apostilasFiltradas.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Capítulo</th>
+          <th>Tópico</th>
+          <th>Ano Letivo</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #ded9cd;">
+        <tr *ngFor="let apostila of apostilasFiltradas">
+          <td>{{ apostila.capitulo }}</td>
+          <td>{{ apostila.topico }}</td>
+          <td>{{ apostila.ano }}º Ano</td>
+          <td>
+            <button (click)="abrirApostila(apostila)">Abrir</button>
+            <button *ngIf="role !== 'aluno'" style="margin-left: 5px; background-color: rgb(2, 116, 2);" (click)="editarApostila(apostila)">Editar</button>
+            <button *ngIf="role !== 'aluno'" style="margin-left: 5px; background-color: rgb(116, 2, 2);" (click)="deletarApostila(apostila)">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="apostilasFiltradas.length === 0">Nenhum conteúdo encontrado.</p>
+</div>
+ 
+   <div class="back-to-main" [routerLink]="['/menu-ensino', ano]">
+        <img src="left-arrow.png" alt="Voltar para o início" />
+    </div>

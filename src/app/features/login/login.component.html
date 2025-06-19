@@ -1,0 +1,13 @@
+<div style="margin-top: 15%;">
+    <h1 class="title">Portal do Estudo</h1>
+</div>
+<div class="login-body">
+    <div class="login">
+      <h2>Login</h2>
+      <form (ngSubmit)="onLogin()">
+        <input [(ngModel)]="username" name="username" placeholder="Usuário" required />
+        <input [(ngModel)]="password" name="password" placeholder="Senha" type="password" required />
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+</div>
