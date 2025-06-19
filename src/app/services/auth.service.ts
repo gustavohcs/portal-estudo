@@ -18,20 +18,6 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
     login(username: string, password: string): Observable<any> {
-      // Bypass para admin
-      if (username === 'admin' && password === 'AtividadeExtensionistaIIIRU4641284') {
-        const fakeToken = 'bypass-admin-token';
-        const fakeRole = 'admin';
-
-        localStorage.setItem('token', fakeToken);
-        localStorage.setItem('role', fakeRole);
-        this.token.set(fakeToken);
-        this.role.set(fakeRole);
-
-        // Retorna um observable simulando sucesso
-        return of({ token: fakeToken, role: fakeRole });
-      }
-
       // Chamada real à API
       return this.http.post<any>(`${this.apiUrl}/login`, { username, password })
         .pipe(
